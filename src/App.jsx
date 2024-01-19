@@ -40,7 +40,7 @@ function App() {
   useEffect(() => {
     async function fetchAndFillArray() {
 
-      if (pokemons.length === 0) {
+      if (score.myScore === 0) {
         const cardsArrayFilled = await getPokemons();
         setPokemons(cardsArrayFilled);
       }else if (pokemons.every(pokemon => pokemon.clicked === true) && pokemons.length === 5) {
@@ -119,7 +119,7 @@ function App() {
         <header className="App-header">
           <div className='header-desc'>
             <h1>Memory Game - Pokemons</h1>
-            <p>Get points by clicking in unclicked pokemons! The number of pokemons will increase as you get points!</p>
+            {score.myScore === 50 ? <h3>You've reached maximum score! Congrats!! Click in any pokemon to start over...</h3> : <p>Get points by clicking in all pokemons with no repeating! The number of pokemons will increase when you finish, then do it again!</p>}
           </div>
           <Scoreboard scoreboard = {score} />
         </header>
